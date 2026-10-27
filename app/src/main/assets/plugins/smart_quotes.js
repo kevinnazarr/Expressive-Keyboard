@@ -1,10 +1,10 @@
 /* @plugin
 {
   "id": "builtin.smart-quotes",
-  "name": "Ёлочки «»",
-  "version": "1.0",
+  "name": "Tanda Petik Pintar «»",
+  "version": "1.1",
   "author": "Expressive Keyboard",
-  "description": "Мод: кавычка \" сама становится « или » — в зависимости от того, открываете вы цитату или закрываете. Пример события key.",
+  "description": "Mengubah tanda petik biasa \" menjadi petik sudut « atau » secara otomatis tergantung apakah sedang membuka atau menutup kutipan.",
   "icon": "«»",
   "permissions": ["read_text"],
   "enabledByDefault": false

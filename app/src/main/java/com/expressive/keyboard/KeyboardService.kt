@@ -145,7 +145,7 @@ import kotlin.math.sqrt
 
 @Stable
 class KeyboardState {
-    var language by mutableStateOf(KeyboardLanguage.RU)
+    var language by mutableStateOf(KeyboardLanguage.ID)
     var shift by mutableStateOf(ShiftState.OFF)
     var symbolsPage by mutableIntStateOf(0)
     var panel by mutableStateOf(ActivePanel.KEYBOARD)
@@ -2437,7 +2437,7 @@ class ComposeKeyboardService : InputMethodService(),
                 PluginActionType.TRANSFORM -> {
                     val t = takeTarget(ic, a.scope)
                     if (t == null) {
-                        kb.pluginStatus = "Нет текста для «${a.title}»"
+                        kb.pluginStatus = "Tidak ada teks untuk «${a.title}»"
                     } else {
                         replaceTarget(ic, t, PluginTransforms.apply(a, t.text))
                         kb.pluginStatus = "✓ ${a.title}"
@@ -2457,11 +2457,11 @@ class ComposeKeyboardService : InputMethodService(),
                             if (a.output == "replace" && t != null && targetStillValid(ic2, t)) replaceTarget(ic2, t, out)
                             else commitText(out)
                             kb.pluginStatus = "✓ ${a.title}"
-                        }.onFailure { kb.pluginStatus = "✕ ${a.title}: ${it.message ?: "ошибка сети"}" }
+                        }.onFailure { kb.pluginStatus = "✕ ${a.title}: ${it.message ?: tr("Ошибка сети")}" }
                     }
                 }
             }
-        }.onFailure { kb.pluginStatus = "✕ ${a.title}: ${it.message ?: "ошибка"}" }
+        }.onFailure { kb.pluginStatus = "✕ ${a.title}: ${it.message ?: tr("Ошибка")}" }
     }
 
     // ------------------------------------------------------------------ ScriptBridge: что могут скрипты модов

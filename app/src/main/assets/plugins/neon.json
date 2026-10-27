@@ -1,9 +1,9 @@
 {
   "id": "builtin.neon",
-  "name": "Неон",
+  "name": "Neon Glow",
   "version": "3.0",
   "author": "Expressive Keyboard",
-  "description": "Глубокий тёмно-фиолетовый фон, тонкие бирюзовые контуры и чёткие буквы. Клавиша загорается только под пальцем, Enter — переливается бирюзовым в сиреневый.",
+  "description": "Latar belakang ungu gelap dengan garis tepi toska bercahaya dan tombol yang menyala saat disentuh. Tombol Enter bergradasi toska-violet.",
   "icon": "🌃",
   "skin": {
     "keyboard": {

@@ -344,7 +344,7 @@ internal fun HomePage(settings: KeyboardSettings, onNavigate: (SettingsPage) -> 
     SettingsSection(null) {
         ChoiceItem(
             Icons.Rounded.Translate, "Язык приложения", null,
-            listOf("SYSTEM" to "Как в системе", "ru" to "Русский", "en" to "English"), settings.appLanguage
+            listOf("SYSTEM" to tr("Как в системе"), "id" to "Bahasa Indonesia", "en" to "English"), settings.appLanguage
         ) { v -> KeyboardPrefs.edit(context) { putString("app_language", v) } }
     }
     SettingsSection("Дизайн") {
@@ -716,23 +716,23 @@ internal fun KeysPage(settings: KeyboardSettings) {
                 globeActions, settings.globeLongPress
             ) { v -> KeyboardPrefs.edit(context) { putString("globe_long_press", v) } }
         }
-        ToggleItem(Icons.Rounded.MoreHoriz, "Запятая и точка на странице ?123", "По бокам пробела. Удержание — другие знаки: ; : ' \" ? ! …", settings.punctuationKeys) {
+        ToggleItem(Icons.Rounded.MoreHoriz, "Запятая и точка на странице ?123", tr("Di sisi spasi. Tahan untuk simbol: ; : ' \" ? ! …"), settings.punctuationKeys) {
             KeyboardPrefs.edit(context) { putBoolean("punctuation_keys", it) }
         }
         ToggleItem(Icons.Rounded.EmojiEmotions, "Кнопка эмодзи", null, settings.showEmojiKey) {
             KeyboardPrefs.edit(context) { putBoolean("show_emoji_key", it) }
         }
         ToggleItem(
-            Icons.Rounded.MoreHoriz, "Запятая на основной клавиатуре", "Слева от пробела. Удержание — ; : ' \" и другие знаки",
+            Icons.Rounded.MoreHoriz, "Запятая на основной клавиатуре", tr("Di kiri spasi. Tahan untuk simbol: ; : ' \" dan lainnya"),
             settings.spaceLeftKey == ","
         ) { on -> KeyboardPrefs.edit(context) { putString("space_left_key", if (on) "," else "") } }
         ToggleItem(
-            Icons.Rounded.MoreHoriz, "Точка на основной клавиатуре", "Справа от пробела. Удержание — ? ! … и другие знаки",
+            Icons.Rounded.MoreHoriz, "Точка на основной клавиатуре", tr("Di kanan spasi. Tahan untuk tanda baca: ? ! …"),
             settings.spaceRightKey == "."
         ) { on -> KeyboardPrefs.edit(context) { putString("space_right_key", if (on) "." else "") } }
         SpaceSlotItem(
             Icons.Rounded.SpaceBar, "Своя клавиша слева от пробела", settings.spaceLeftKey, "space_left_key",
-            "Например, запятая вместо кнопки языка, если язык вы меняете свайпом по пробелу"
+            tr("Contoh: tanda koma sebagai pengganti tombol bahasa jika Anda mengganti bahasa dengan usap spasi")
         )
         SpaceSlotItem(
             Icons.Rounded.SpaceBar, "Своя клавиша справа от пробела", settings.spaceRightKey, "space_right_key",
@@ -826,9 +826,10 @@ internal fun TypingPage(settings: KeyboardSettings, part: SettingsPage) {
     if (part == SettingsPage.TYPING) SettingsSection("Исправление текста ИИ") {
         InfoCard(
             Icons.Rounded.AutoFixHigh,
-            "Кнопка ✨ на панели инструментов исправляет выделенный текст, а если ничего не выделено — весь текст в поле. " +
-                "«Авто»: сначала на телефоне (Gemini Nano), если он умеет; иначе сервис, для которого задан ключ; иначе бесплатная проверка LanguageTool. " +
-                "Облачные сервисы получают исправляемый текст."
+            tr(
+                "Tombol ✨ pada bilah alat mengoreksi teks yang dipilih, atau seluruh teks di kolom input jika tidak ada yang dipilih. " +
+                "Otomatis: memprioritaskan Gemini Nano di perangkat jika didukung, lalu layanan AI dengan API key, atau LanguageTool."
+            )
         )
         val providers = AiProvider.entries.map { it.id to it.title }
         val nanoText = when (nanoStatus) {
@@ -1122,11 +1123,11 @@ internal fun PluginsPage() {
 
     InfoCard(
         Icons.Rounded.Extension,
-        "Как установить: нажмите «Импорт из файла» и выберите плагин (.json, .js или .zip) или скопируйте его текст " +
-            "и нажмите «Импорт из буфера обмена». Плагин появится в списке ниже — его можно включить, выключить или удалить.\n\n" +
-            "Как пользоваться: на клавиатуре нажмите кнопку с сеткой слева вверху, затем 🧩 — откроются вкладки плагинов " +
-            "с их кнопками и панелями. Кнопки, отмеченные плагином, появляются прямо на панели инструментов.\n\n" +
-            "Как сделать свой: сохраните пример кнопкой ниже, отредактируйте и импортируйте. Описание формата — в файле PLUGINS.md."
+        tr(
+            "Cara pasang: ketuk «Impor dari file» dan pilih plugin (.json, .js, atau .zip) atau salin teksnya lalu ketuk «Impor dari papan klip».\n\n" +
+            "Cara pakai: pada keyboard, ketuk tombol menu di kiri atas lalu 🧩 untuk membuka panel plugin dengan tombol dan fiturnya.\n\n" +
+            "Buat plugin sendiri: simpan contoh plugin di bawah, modifikasi sesuai kebutuhan lalu impor kembali. Panduan lengkap ada di file PLUGINS.md."
+        )
     )
     SettingsSection("Установка") {
         ActionItem(Icons.Rounded.FileOpen, "Импорт из файла", ".js (мод), .zip (мод с картинками) или .json", onClick = {

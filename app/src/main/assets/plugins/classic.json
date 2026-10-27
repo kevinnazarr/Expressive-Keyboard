@@ -1,9 +1,9 @@
 {
   "id": "builtin.classic",
-  "name": "Классика",
+  "name": "Klasik (Classic)",
   "version": "2.0",
   "author": "Expressive Keyboard",
-  "description": "Привычная нейтральная клавиатура: белые клавиши на сером фоне, синий Enter, лёгкая тень. Без цветов Material You, в светлой и тёмной теме.",
+  "description": "Tema keyboard netral: tombol putih di atas abu-abu, Enter biru, bayangan lembut. Tersedia dalam mode terang dan gelap.",
   "icon": "⌨️",
   "enabledByDefault": true,
   "skin": {

@@ -120,19 +120,18 @@ internal fun LayoutEditorPage(settings: KeyboardSettings) {
 
     InfoCard(
         Icons.Rounded.SwapHoriz,
-        "Нажмите на две клавиши — они поменяются местами. Удерживайте клавишу, чтобы поставить на её место свой символ: " +
-            "букву, цифру или знак. Варианты при удержании переезжают вместе с клавишей."
+        tr("Ketuk dua tombol untuk menukar posisinya. Tahan tombol untuk menggantinya dengan karakter kustom (huruf, angka, atau simbol).")
     )
-    SettingsSection("Раскладка") {
+    SettingsSection(tr("Раскладка")) {
         if (languages.size > 1) {
             ChoiceItem(
-                Icons.Rounded.SwapHoriz, "Язык", null,
+                Icons.Rounded.SwapHoriz, tr("Язык"), null,
                 languages.take(4).map { it.id to it.label }, langId
             ) { langId = it; selected = null }
         }
         ChoiceItem(
-            Icons.Rounded.SwapHoriz, "Страница", null,
-            listOf("0" to "Буквы", "1" to "Символы", "2" to "Символы 2"), page.toString()
+            Icons.Rounded.SwapHoriz, tr("Страница"), null,
+            listOf("0" to tr("Буквы"), "1" to tr("Символы"), "2" to tr("Символы 2")), page.toString()
         ) { page = it.toInt(); selected = null }
     }
     SettingsSection(lang.displayTitle()) {
@@ -176,7 +175,7 @@ internal fun LayoutEditorPage(settings: KeyboardSettings) {
             }
         }
         if (user.containsKey(id)) {
-            ActionItem(Icons.Rounded.RestartAlt, "Вернуть как было", "Только для этой раскладки", onClick = { save(null) })
+            ActionItem(Icons.Rounded.RestartAlt, tr("Вернуть как было"), tr("Только для этой раскладки"), onClick = { save(null) })
         }
     }
 

@@ -1,9 +1,9 @@
 {
   "id": "builtin.liquid-glass",
-  "name": "Жидкое стекло",
+  "name": "Kaca Cair (Liquid Glass)",
   "version": "3.1",
   "author": "Expressive Keyboard",
-  "description": "Клавиатура из жидкого стекла: на Android 12+ она по-настоящему размывает приложение под собой, клавиши — матовое стекло с бликом и ободком, нажатие пружинит как желе. На старых версиях — мягкий фон с преломлением.",
+  "description": "Tema kaca transparan mewah: efek blur latar belakang, kilau refleksi kaca, dan animasi ketuk kenyal yang responsif.",
   "icon": "🫧",
   "skin": {
     "keyboard": {
@@ -49,137 +49,178 @@
       },
       "func": {
         "glass": {
-          "blur": 16,
-          "refraction": 0.5,
-          "dispersion": 0.08,
-          "highlight": 0.6,
-          "rim": 0.7,
-          "frost": 0.25,
-          "tint": "#59FFFFFF"
+          "tint": "#66FFFFFF",
+          "rim": 0.6
+        }
+      },
+      "space": {
+        "glass": {
+          "tint": "#73FFFFFF"
         }
       },
       "enter": {
+        "material": "glass",
+        "glass": {
+          "blur": 16,
+          "refraction": 0.55,
+          "dispersion": 0.12,
+          "highlight": 0.85,
+          "rim": 0.9,
+          "tint": "#8C2F6BFF"
+        },
         "background": {
           "colors": [
-            "#E63D7BFF",
-            "#E62F5BFF"
+            "#3B75FF",
+            "#225CEB"
           ],
-          "angle": 90
+          "angle": 135
         },
-        "pressedBackground": "#5C8DFF",
+        "shadowColor": "#4D2F6BFF",
+        "pressedBackground": "#1B4FD1",
         "text": "#FFFFFF"
       }
     },
     "popup": {
       "material": "glass",
-      "radius": 14,
-      "background": "#E6FFFFFF",
+      "glass": {
+        "blur": 20,
+        "refraction": 0.6,
+        "highlight": 0.85,
+        "rim": 0.9,
+        "tint": "#B3FFFFFF"
+      },
+      "radius": 18,
+      "background": "#F4F6FB",
       "text": "#15171C",
+      "shadow": 8,
+      "shadowY": 4,
+      "shadowColor": "#26000000",
       "pressedBackground": "#2F6BFF",
       "pressedText": "#FFFFFF"
     },
     "chips": {
-      "material": "none",
+      "material": "glass",
+      "glass": {
+        "blur": 12,
+        "highlight": 0.6,
+        "rim": 0.7,
+        "tint": "#66FFFFFF"
+      },
+      "background": "#00FFFFFF",
       "text": "#15171C"
     },
     "buttons": {
       "material": "glass",
       "glass": {
-        "blur": 16,
-        "refraction": 0.5,
-        "dispersion": 0.08,
-        "highlight": 0.75,
-        "rim": 0.8,
-        "tint": "#8CFFFFFF"
+        "blur": 12,
+        "highlight": 0.7,
+        "rim": 0.7,
+        "tint": "#73FFFFFF"
       },
-      "text": "#2A2D35"
+      "background": "#00FFFFFF",
+      "text": "#2B303A"
     },
     "panel": {
       "material": "glass",
       "glass": {
-        "blur": 16,
-        "refraction": 0.15,
-        "dispersion": 0.0,
-        "highlight": 0.45,
-        "rim": 0.7,
-        "tint": "#66FFFFFF"
+        "blur": 24,
+        "refraction": 0.45,
+        "highlight": 0.7,
+        "rim": 0.8,
+        "tint": "#99EEF2F9"
       },
-      "radius": 22
+      "background": "#E8ECF5",
+      "radius": 24,
+      "shadow": 12,
+      "shadowY": 6,
+      "shadowColor": "#2615171C"
     },
     "dark": {
       "keyboard": {
         "background": {
           "colors": [
-            "#151925",
-            "#0E111A"
+            "#14171F",
+            "#0E1017"
           ],
           "angle": 90
         },
-        "blurTint": "#8C10131C",
-        "trail": "#CCFFFFFF"
+        "blurTint": "#B30A0D14",
+        "trail": "#80598BFF"
       },
       "colors": {
-        "background": "#12151F",
-        "key": "#2A2E3A",
-        "keyText": "#F4F6FB",
-        "func": "#2A2E3A",
-        "funcText": "#F4F6FB",
-        "accent": "#5C8DFF",
+        "background": "#0F1118",
+        "key": "#1E222D",
+        "keyText": "#F0F3F9",
+        "func": "#1A1D27",
+        "funcText": "#C2C9D6",
+        "accent": "#477DFF",
         "accentText": "#FFFFFF"
       },
       "keys": {
         "*": {
           "glass": {
             "blur": 16,
-            "refraction": 0.55,
-            "dispersion": 0.1,
-            "highlight": 0.55,
-            "rim": 0.65,
-            "tint": "#24FFFFFF"
+            "refraction": 0.45,
+            "highlight": 0.45,
+            "rim": 0.5,
+            "tint": "#26FFFFFF"
           },
-          "pressedBackground": "#73FFFFFF",
-          "shadowColor": "#59000000"
+          "pressedBackground": "#2A3040",
+          "shadowColor": "#66000000"
         },
         "func": {
           "glass": {
-            "blur": 16,
-            "refraction": 0.55,
-            "dispersion": 0.1,
-            "highlight": 0.45,
-            "rim": 0.55,
-            "frost": 0.12,
-            "tint": "#14FFFFFF"
+            "tint": "#1AFFFFFF",
+            "rim": 0.4
           }
+        },
+        "space": {
+          "glass": {
+            "tint": "#20FFFFFF"
+          }
+        },
+        "enter": {
+          "glass": {
+            "tint": "#80477DFF"
+          },
+          "background": {
+            "colors": [
+              "#5285FF",
+              "#336DFF"
+            ],
+            "angle": 135
+          },
+          "shadowColor": "#66477DFF",
+          "pressedBackground": "#245CE6"
         }
       },
       "popup": {
-        "background": "#B32A2E3A",
-        "text": "#FFFFFF",
-        "pressedBackground": "#5C8DFF"
+        "glass": {
+          "tint": "#4D262C3A",
+          "highlight": 0.5
+        },
+        "background": "#1B1F2A",
+        "text": "#F0F3F9",
+        "shadowColor": "#80000000"
       },
       "chips": {
-        "text": "#F4F6FB"
+        "glass": {
+          "tint": "#1AFFFFFF"
+        },
+        "text": "#E1E6F0"
       },
       "buttons": {
         "glass": {
-          "blur": 16,
-          "refraction": 0.55,
-          "dispersion": 0.1,
-          "highlight": 0.55,
-          "rim": 0.65,
-          "tint": "#24FFFFFF"
+          "tint": "#20FFFFFF"
         },
-        "text": "#E6E9F2"
+        "text": "#D4DAE6"
       },
       "panel": {
         "glass": {
-          "blur": 16,
-          "refraction": 0.15,
-          "dispersion": 0.0,
-          "highlight": 0.35,
-          "rim": 0.5,
-          "tint": "#14FFFFFF"
-        }
+          "tint": "#B311141C"
+        },
+        "background": "#12151D",
+        "shadowColor": "#99000000"
       }
     }
   }

@@ -1,0 +1,19 @@
+{
+  "id": "builtin.chat-formatting",
+  "name": "Format Teks Chat & Markdown",
+  "version": "1.0",
+  "author": "Expressive Keyboard",
+  "description": "Bungkus teks terpilih dengan gaya format chat WhatsApp, Telegram, Discord, dan Markdown (*tebal*, _miring_, ~coret~, `kode`, > kutipan).",
+  "icon": "💬",
+  "actions": [
+    { "title": "*Tebal WhatsApp*", "icon": "𝗕", "type": "transform", "transform": "wrap", "prefix": "*", "suffix": "*" },
+    { "title": "_Miring WhatsApp_", "icon": "𝘐", "type": "transform", "transform": "wrap", "prefix": "_", "suffix": "_" },
+    { "title": "~Coret WhatsApp~", "icon": "S̶", "type": "transform", "transform": "wrap", "prefix": "~", "suffix": "~" },
+    { "title": "`Monospace / Kode`", "icon": "🔤", "type": "transform", "transform": "wrap", "prefix": "`", "suffix": "`" },
+    { "title": "```Blok Kode```", "icon": "📄", "type": "transform", "transform": "wrap", "prefix": "```\n", "suffix": "\n```" },
+    { "title": "> Kutipan / Quote", "icon": "❝", "type": "transform", "transform": "wrap", "prefix": "> ", "suffix": "" },
+    { "title": "||Spoiler||", "icon": "⬛", "type": "transform", "transform": "wrap", "prefix": "||", "suffix": "||" },
+    { "title": "• Poin Bullet", "icon": "•", "type": "transform", "transform": "wrap", "prefix": "• ", "suffix": "" },
+    { "title": "1. Nomor Urut", "icon": "1.", "type": "transform", "transform": "wrap", "prefix": "1. ", "suffix": "" }
+  ]
+}

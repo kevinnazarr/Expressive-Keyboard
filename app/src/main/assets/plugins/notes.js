@@ -1,10 +1,10 @@
 /* @plugin
 {
   "id": "builtin.notes",
-  "name": "Заметки",
-  "version": "1.0",
+  "name": "Catatan Cepat",
+  "version": "1.1",
   "author": "Expressive Keyboard",
-  "description": "Мод: сохраняйте выделенный или скопированный текст и вставляйте его одним касанием. Заметки хранятся только на телефоне.",
+  "description": "Simpan teks penting atau salinan clipboard dan sisipkan kembali dengan satu ketukan. Disimpan aman secara lokal di perangkat.",
   "icon": "@note",
   "permissions": ["read_text", "clipboard"]
 }
@@ -20,29 +20,29 @@ function save() {
 function addNote(text) {
   text = (text || "").trim();
   if (!text) {
-    kb.status("Нечего сохранить: выделите текст или скопируйте его");
+    kb.status("Pilih teks atau salin ke clipboard terlebih dahulu");
     return;
   }
   notes = notes.filter(function (n) { return n !== text; });
   notes.unshift(text);
   if (notes.length > 50) notes.length = 50;
   save();
-  kb.status("Сохранено в заметки");
+  kb.status("Berhasil disimpan ke Catatan Cepat");
 }
 
 kb.addPanel({
   id: "notes",
-  title: "Заметки",
+  title: "Catatan Cepat",
   icon: "@note",
   render: function () {
     var ui = [
       { type: "row", children: [
-        { type: "button", text: "Из выделения", icon: "@select_all", onClick: function () { addNote(kb.selectedText()); } },
-        { type: "button", text: "Из буфера", icon: "@clipboard", onClick: function () { addNote(kb.clipboard()[0]); } }
+        { type: "button", text: "Dari Seleksi", icon: "@select_all", onClick: function () { addNote(kb.selectedText()); } },
+        { type: "button", text: "Dari Clipboard", icon: "@clipboard", onClick: function () { addNote(kb.clipboard()[0]); } }
       ] }
     ];
     if (notes.length === 0) {
-      ui.push({ type: "text", text: "Пока пусто. Выделите текст в поле и нажмите «Из выделения».", center: true });
+      ui.push({ type: "text", text: "Belum ada catatan tersimpan. Pilih teks atau salin sesuatu lalu ketuk tombol di atas.", center: true });
     }
     notes.forEach(function (n, i) {
       ui.push({ type: "row", children: [

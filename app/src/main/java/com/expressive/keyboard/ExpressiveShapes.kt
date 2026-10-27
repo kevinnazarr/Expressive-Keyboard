@@ -147,11 +147,11 @@ enum class ExpressiveShapePreset(
     val defaultWaves: Int,
     val defaultAmplitude: Float
 ) {
-    COOKIE_12("COOKIE_12", "Печенька", ShapeProfile.SINE, 12, 6f),
-    SUNNY_8("WAVY_8", "Солнце", ShapeProfile.SINE, 8, 8f),
-    FLOWER_6("FLOWER_6", "Цветок", ShapeProfile.LOBES, 6, 10f),
-    CLOVER_4("CLOVER_4", "Клевер", ShapeProfile.LOBES, 4, 12f),
-    CIRCLE("CIRCLE", "Круг", ShapeProfile.CIRCLE, 12, 0f);
+    COOKIE_12("COOKIE_12", "Biskuit", ShapeProfile.SINE, 12, 6f),
+    SUNNY_8("WAVY_8", "Matahari", ShapeProfile.SINE, 8, 8f),
+    FLOWER_6("FLOWER_6", "Bunga", ShapeProfile.LOBES, 6, 10f),
+    CLOVER_4("CLOVER_4", "Semanggi", ShapeProfile.LOBES, 4, 12f),
+    CIRCLE("CIRCLE", "Lingkaran", ShapeProfile.CIRCLE, 12, 0f);
 
     companion object {
         fun fromId(id: String): ExpressiveShapePreset = entries.firstOrNull { it.id == id } ?: COOKIE_12

@@ -556,52 +556,34 @@ object WordPredictorEngine {
     /** Вызывается в главном потоке, когда словарь загрузился — клавиатура обновляет подсказки. */
     @Volatile var onDictionaryLoaded: (() -> Unit)? = null
 
-    private const val RU_SEED =
-        "я ты он она оно мы вы они меня тебя его её нас вас их мне тебе ему ей нам вам им мной тобой " +
-        "привет здравствуйте спасибо пожалуйста извини прости хорошо отлично супер класс круто ясно понятно ладно окей ок давай " +
-        "сегодня завтра вчера сейчас потом скоро уже ещё еще всегда никогда иногда " +
-        "приветик спасибки нормалек погнали увидимся созвонимся спишемся"
+    private const val ID_SEED =
+        "saya kamu dia mereka kita anda ini itu ada bisa tidak akan sudah mau harus " +
+        "halo terima kasih tolong maaf ya iya oke baik mungkin hari besok nanti juga " +
+        "dengan untuk dari ke pada dalam karena tapi saat lebih sangat"
 
     private const val EN_SEED =
         "hello hi hey thanks thank please sorry yes yeah okay ok sure maybe today tomorrow tonight " +
         "dont doesnt didnt isnt arent wont cant im youre"
 
-    /** С чего обычно начинают сообщение — пока ничего не набрано. */
+    /** Kata pembuka pesan default. */
     private val SENTENCE_STARTERS = mapOf(
-        "ru" to listOf("я", "привет", "да"),
-        "uk" to listOf("я", "привіт", "так"),
-        "en" to listOf("i", "hi", "the"),
-        "de" to listOf("ich", "hallo", "ja"),
-        "es" to listOf("hola", "yo", "sí"),
-        "fr" to listOf("je", "salut", "oui")
+        "id" to listOf("saya", "halo", "ya"),
+        "en" to listOf("i", "hi", "the")
     )
 
-    private val ruBigrams: Map<String, List<String>> = mapOf(
-        "привет" to listOf("как", "что", "дела"),
-        "здравствуйте" to listOf("как", "подскажите", "я"),
-        "как" to listOf("дела", "ты", "жизнь"),
-        "дела" to listOf("хорошо", "отлично", "у"),
-        "что" to listOf("делаешь", "нового", "случилось"),
-        "доброе" to listOf("утро", "время", "здоровье"),
-        "добрый" to listOf("день", "вечер", "человек"),
-        "спокойной" to listOf("ночи", "дороги", "смены"),
-        "спасибо" to listOf("большое", "тебе", "за"),
-        "большое" to listOf("спасибо", "тебе", "дело"),
-        "пожалуйста" to listOf("не", "помоги", "скажи"),
-        "я" to listOf("не", "сейчас", "люблю"),
-        "ты" to listOf("где", "как", "сегодня"),
-        "мы" to listOf("сегодня", "уже", "будем"),
-        "не" to listOf("знаю", "могу", "хочу"),
-        "очень" to listOf("хорошо", "круто", "вкусно"),
-        "давай" to listOf("завтра", "сегодня", "потом"),
-        "хорошего" to listOf("дня", "вечера", "настроения"),
-        "у" to listOf("меня", "тебя", "нас"),
-        "меня" to listOf("все", "нет", "есть"),
-        "тебя" to listOf("люблю", "как", "жду"),
-        "мне" to listOf("кажется", "нужно", "нравится"),
-        "это" to listOf("очень", "просто", "правда"),
-        "все" to listOf("хорошо", "отлично", "будет"),
-        "всё" to listOf("хорошо", "отлично", "понятно")
+    private val idBigrams: Map<String, List<String>> = mapOf(
+        "halo" to listOf("apa", "semua", "kabar"),
+        "apa" to listOf("kabar", "yang", "bisa"),
+        "terima" to listOf("kasih"),
+        "selamat" to listOf("pagi", "siang", "malam", "datang"),
+        "tidak" to listOf("bisa", "ada", "tahu", "mau"),
+        "sudah" to listOf("ada", "selesai", "bisa", "makan"),
+        "terima kasih" to listOf("banyak", "kembali"),
+        "saya" to listOf("tidak", "bisa", "mau", "sudah"),
+        "kamu" to listOf("bisa", "lagi", "dimana", "mau"),
+        "bisa" to listOf("bantu", "tolong", "kirim", "bicara"),
+        "ada" to listOf("yang", "apa", "banyak", "di"),
+        "semoga" to listOf("sukses", "sehat", "hari", "berhasil")
     )
 
     private val enBigrams: Map<String, List<String>> = mapOf(
@@ -618,14 +600,13 @@ object WordPredictorEngine {
         "see" to listOf("you", "what", "if")
     )
 
-    private val ruTypos = mapOf(
-        "привкт" to "привет", "првиет" to "привет", "привте" to "привет", "пирвет" to "привет",
-        "превет" to "привет", "кка" to "как", "аак" to "как", "длеа" to "дела",
-        "спсибо" to "спасибо", "спаисбо" to "спасибо", "сапсибо" to "спасибо", "пожалуста" to "пожалуйста",
-        "пожалуйтса" to "пожалуйста", "хоршо" to "хорошо", "хрошо" to "хорошо", "хорощо" to "хорошо",
-        "сегодян" to "сегодня", "сегдня" to "сегодня", "сйечас" to "сейчас", "сейчса" to "сейчас",
-        "потмо" to "потом", "чот" to "что", "чьо" to "что", "жто" to "это", "наврено" to "наверное",
-        "кнечно" to "конечно", "коненчо" to "конечно", "любюл" to "люблю", "тбея" to "тебя"
+    private val idTypos = mapOf(
+        "yng" to "yang", "dgn" to "dengan", "utk" to "untuk", "bgt" to "banget",
+        "sy" to "saya", "km" to "kamu", "sdh" to "sudah", "blm" to "belum",
+        "tdk" to "tidak", "gk" to "tidak", "gak" to "tidak", "krn" to "karena",
+        "tp" to "tapi", "trs" to "terus", "skrg" to "sekarang", "bntr" to "sebentar",
+        "makasi" to "terima kasih", "makasih" to "terima kasih", "thx" to "terima kasih",
+        "bisaa" to "bisa", "iyaa" to "iya", "yaps" to "ya", "okee" to "oke"
     )
 
     private val enTypos = mapOf(
@@ -659,7 +640,7 @@ object WordPredictorEngine {
                 parseInto(wordsRaw, userWords)
                 parseInto(bigramsRaw, userBigrams)
             }
-            prepare(app, KeyboardLanguage.RU)
+            prepare(app, KeyboardLanguage.ID)
             prepare(app, KeyboardLanguage.EN)
         }
     }
@@ -734,7 +715,7 @@ object WordPredictorEngine {
                 val words = LinkedHashSet<String>()
                 Dictionaries.read(app, code)?.let { list -> list.forEach { if (it.isNotBlank()) words += it.trim() } }
                 when (code) {
-                    "ru" -> RU_SEED.split(' ').forEach { if (it.isNotBlank()) words += it }
+                    "id" -> ID_SEED.split(' ').forEach { if (it.isNotBlank()) words += it }
                     "en" -> EN_SEED.split(' ').forEach { if (it.isNotBlank()) words += it }
                 }
                 pluginWords[lang.id]?.let { words += it.map { w -> w.lowercase() } }
@@ -920,9 +901,8 @@ object WordPredictorEngine {
      * Такие ошибки — самые частые в русском, поэтому стоят дешевле промаха по соседней клавише.
      */
     private val SOUND_ALIKE: Set<String> = buildSet {
-        val ru = listOf("ао", "еи", "ея", "иы", "еэ", "юу", "ёо", "шщ", "ьъ", "зс", "дт", "бп", "вф", "гк", "жш", "цс")
-        val latin = listOf("ae", "ei", "io", "ou", "ua", "ai", "eo", "yi", "ck", "cs", "sz", "sc")
-        for (p in ru + latin) {
+        val latin = listOf("ae", "ei", "io", "ou", "ua", "ai", "eo", "yi", "ck", "cs", "sz", "sc", "vf", "pb", "td", "kg", "dt", "td", "ie", "ea")
+        for (p in latin) {
             add(p)
             add(p.reversed())
         }
@@ -996,7 +976,7 @@ object WordPredictorEngine {
         val n = userBigrams["${lang.id}:$prev|$w"] ?: 0
         if (n > 0) bonus += min(0.6f, 0.25f * kotlin.math.ln(1f + n))
         val builtin = when (lang.id) {
-            "ru" -> ruBigrams[prev]
+            "id" -> idBigrams[prev]
             "en" -> enBigrams[prev]
             else -> null
         }
@@ -1050,14 +1030,14 @@ object WordPredictorEngine {
         return best.distinctBy { it.word }.take(limit)
     }
 
-    /** Однобуквенные слова, которые можно отделить пропущенным пробелом. */
+    /** Kata satu huruf atau partikel pendek. */
     private fun singleLetterWord(lang: KeyboardLanguage, s: String): Boolean = when (lang.id) {
-        "ru" -> s in RU_SINGLE
+        "id" -> s in ID_SINGLE
         "en" -> s == "a" || s == "i"
         else -> false
     }
 
-    private val RU_SINGLE = setOf("в", "с", "и", "к", "у", "я", "а", "о")
+    private val ID_SINGLE = setOf("a", "i", "e", "o", "u", "y", "di", "ke")
 
     /** Пропущенный пробел: «приветкак» → «привет как», «вкино» → «в кино». Возвращает пару и её цену. */
     private fun splitWords(lower: String, lang: KeyboardLanguage, normal: Boolean): Pair<String, Float>? {
@@ -1096,7 +1076,7 @@ object WordPredictorEngine {
         touches: List<KeyTouch?>?
     ): String? {
         if (lower.length < 2 || lower.any { !it.isLetter() && it != '\'' && it != '-' }) return null
-        if (lang.id == "ru") ruTypos[lower]?.let { return it }
+        if (lang.id == "id") idTypos[lower]?.let { return it }
         if (lang.id == "en") enTypos[lower]?.let { return it }
         if (lower.length < 3 || !lang.autoCorrect || !hasDictionary(lang)) return null
         val normal = strength == "NORMAL"
@@ -1189,7 +1169,7 @@ object WordPredictorEngine {
         if (!lang.keyPositions.containsKey(lower[0])) return own
         if (uKey(lang, lower) in rejected || userCount(lang, lower) >= LEARNED || isPersonal(lang, lower)) return own
         val table = when (lang.id) {
-            "ru" -> ruTypos[lower]
+            "id" -> idTypos[lower]
             "en" -> enTypos[lower]
             else -> null
         }
@@ -1373,7 +1353,7 @@ object WordPredictorEngine {
                 .take(3)
                 .forEach { set.add(it.key.substringAfter('|')) }
             when (lang.id) {
-                "ru" -> ruBigrams[prev]?.let { set.addAll(it) }
+                "id" -> idBigrams[prev]?.let { set.addAll(it) }
                 "en" -> enBigrams[prev]?.let { set.addAll(it) }
             }
             // связки, набранные хотя бы раз

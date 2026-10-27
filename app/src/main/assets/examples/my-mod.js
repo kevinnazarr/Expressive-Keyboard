@@ -1,10 +1,10 @@
 /* @plugin
 {
   "id": "my.first.mod",
-  "name": "Мой первый мод",
+  "name": "Mod Contoh Saya",
   "version": "1.0",
-  "author": "Я",
-  "description": "Пример мода: своя панель, реакция на слова, свои подсказки и хранилище",
+  "author": "Saya",
+  "description": "Contoh mod: panel kustom, respons kata, saran kustom, dan penyimpanan lokal",
   "icon": "🚀",
   "permissions": ["read_text"],
   "layouts": {
@@ -17,54 +17,48 @@
 }
 */
 
-// Манифест выше — обычный JSON плагина: в нём можно использовать всё из PLUGINS.md
-// (actions, shortcuts, symbols, theme, skin, settings, layouts, icons, languages…).
-// Ниже — скрипт. Он выполняется в песочнице: есть объект kb, console, setTimeout/setInterval.
+// Manifest di atas adalah JSON manifest plugin yang mendukung semua fitur di PLUGINS.md
+// (actions, shortcuts, symbols, theme, skin, settings, layouts, icons, languages).
+// Kode di bawah dijalankan di sandbox Mozilla Rhino: menyediakan kb, console, setTimeout/setInterval.
 
-// Счётчик набранных слов хранится между запусками
+// Menghitung jumlah kata yang diketik secara persisten
 var stats = kb.storage.get("stats", { words: 0 });
 
-// 1. Событие после каждого набранного слова (нужно разрешение read_text)
+// 1. Event setiap kata selesai diketik (membutuhkan izin read_text)
 kb.on("word", function (e) {
   stats.words++;
   if (stats.words % 10 === 0) kb.storage.set("stats", stats);
 });
 
-// 2. Свои подсказки: пока набираете «спс», по бокам строки подсказок появятся варианты
+// 2. Saran kustom: saat mengetik "mksh", tampilkan saran otomatis
 kb.on("suggest", function (e) {
-  if (e.word.toLowerCase() === "спс") return ["спасибо большое", "благодарю"];
+  if (e.word.toLowerCase() === "mksh") return ["terima kasih banyak", "makasih ya"];
 });
 
-// 3. Замена при вводе: две точки подряд превращаются в многоточие
+// 3. Modifikasi tombol: dua titik berturut-turut otomatis menjadi elipsis (…)
 kb.on("key", function (e) {
   if (e.text === "." && kb.textBefore(1) === ".") {
     kb.deleteBefore(1);
-    return "…";            // вернуть строку — ввести её вместо буквы; вернуть false — отменить нажатие
+    return "…";
   }
 });
 
-// 4. Своя панель: render() возвращает список элементов, kb.refresh() перерисовывает
+// 4. Panel kustom: render() mengembalikan elemen UI, kb.refresh() memperbarui tampilan
 kb.addPanel({
   id: "main",
-  title: "Мой мод",
+  title: "Mod Saya",
   icon: "🚀",
   render: function () {
     return [
-      { type: "text", text: "Слов набрано: " + stats.words, size: 18, bold: true },
+      { type: "text", text: "Jumlah kata diketik: " + stats.words, size: 18, bold: true },
       { type: "row", children: [
-        { type: "button", text: "Дата", icon: "@date", onClick: function () { kb.commit(new Date().toLocaleDateString()); } },
-        { type: "button", text: "Сбросить", icon: "@refresh", onClick: function () {
+        { type: "button", text: "Tanggal", icon: "@date", onClick: function () { kb.commit(new Date().toLocaleDateString()); } },
+        { type: "button", text: "Reset", icon: "@refresh", onClick: function () {
           stats.words = 0;
           kb.storage.set("stats", stats);
           kb.refresh();
         } }
-      ] },
-      { type: "grid", items: ["😀", "🔥", "👍", "❤️", "🎉", "🤔"], onClick: function (item) { kb.commit(item); } }
+      ] }
     ];
   }
 });
-
-// 5. Команда для своей клавиши: в раскладке выше клавиша λ вызывает её
-kb.addCommand("lambda", function () { kb.commit("λ"); });
-
-console.log("Мой мод загружен");

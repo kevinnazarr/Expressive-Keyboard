@@ -243,8 +243,8 @@ data class KeyboardSettings(
     val incognito: Boolean = false,               // не учить слова и не запоминать буфер
     // --- оформление из плагина ---
     val skinPlugin: String = "",
-    // --- языки и подсказки ---
-    val languages: String = "ru,en",              // включённые языки по порядку
+    // --- bahasa dan saran ---
+    val languages: String = "id,en",              // bahasa yang aktif secara berurutan
     val autoCorrectStrength: String = "SAFE",     // SAFE — только уверенные исправления | NORMAL
     val dictAutoDownload: Boolean = true,         // скачивать словарь языка при включении
     val punctuationKeys: Boolean = true,          // «,» и «.» по бокам пробела, как в Gboard
@@ -413,7 +413,10 @@ object KeyboardPrefs {
             autoPair = p.getBoolean("auto_pair", false),
             incognito = p.getBoolean("incognito", false),
             skinPlugin = p.getString("skin_plugin", "") ?: "",
-            languages = p.getString("languages", "ru,en")?.ifBlank { "ru,en" } ?: "ru,en",
+            languages = p.getString("languages", "id,en")?.ifBlank { "id,en" }?.let { raw ->
+                val list = raw.split(',').map { it.trim() }.filter { it == "id" || it == "en" }
+                if (list.isEmpty()) "id,en" else list.joinToString(",")
+            } ?: "id,en",
             autoCorrectStrength = p.getString("auto_correct_strength", "SAFE") ?: "SAFE",
             dictAutoDownload = p.getBoolean("dict_auto_download", true),
             punctuationKeys = p.getBoolean("punctuation_keys", true),
@@ -427,7 +430,9 @@ object KeyboardPrefs {
             userLayouts = p.getString("user_layouts", "") ?: "",
             emojiFontVersion = p.getLong("emoji_font_version", 0L),
             emojiStyle = p.getString("emoji_style", null) ?: if (p.getLong("emoji_font_version", 0L) != 0L) "CUSTOM" else "SYSTEM",
-            appLanguage = p.getString("app_language", "SYSTEM") ?: "SYSTEM",
+            appLanguage = p.getString("app_language", "SYSTEM")?.let {
+                if (it == "id" || it == "en") it else "SYSTEM"
+            } ?: "SYSTEM",
             designStyle = p.getString("design_style", "EXPRESSIVE") ?: "EXPRESSIVE"
         )
     }

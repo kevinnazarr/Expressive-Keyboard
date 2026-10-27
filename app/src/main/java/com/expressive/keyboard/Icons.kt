@@ -68,36 +68,36 @@ object IconStore {
     private const val PREFS = "expressive_keyboard_icons"
     private const val DIR = "icons"
 
-    val EMOJI_CATEGORIES = listOf("Смайлы и эмоции", "Люди", "Животные и природа", "Еда и напитки", "Путешествия и места", "Занятия", "Предметы", "Символы", "Флаги")
+    val EMOJI_CATEGORIES = listOf("Emotikon & Emosi", "Orang", "Hewan & Alam", "Makanan & Minuman", "Perjalanan & Tempat", "Aktivitas", "Objek", "Simbol", "Bendera")
 
     val slots: List<IconSlot> = buildList {
-        val top = "Верхняя панель"
-        add(IconSlot("menu", "Меню (сетка)", top))
-        add(IconSlot("back", "Назад", top))
-        add(IconSlot("mic", "Микрофон", top))
-        add(IconSlot("plugins", "Плагины", top))
-        add(IconSlot("translate", "Переводчик", top))
+        val top = "Bilah Atas"
+        add(IconSlot("menu", "Menu (Kisi)", top))
+        add(IconSlot("back", "Kembali", top))
+        add(IconSlot("mic", "Mikrofon", top))
+        add(IconSlot("plugins", "Plugin", top))
+        add(IconSlot("translate", "Penerjemah", top))
         add(IconSlot("gif", "GIF", top))
-        add(IconSlot("clipboard", "Буфер обмена", top))
-        add(IconSlot("emoji", "Эмодзи (панель)", top))
-        add(IconSlot("one_handed", "Одна рука", top))
-        add(IconSlot("incognito", "Инкогнито", top))
-        add(IconSlot("settings", "Настройки", top))
-        add(IconSlot("hide", "Скрыть клавиатуру", top))
-        add(IconSlot("layout_swap", "Исправить раскладку (dfg → вап)", top))
-        val keys = "Клавиши"
-        add(IconSlot("globe", "Смена языка", keys))
-        add(IconSlot("emoji_key", "Клавиша эмодзи", keys))
+        add(IconSlot("clipboard", "Papan Klip", top))
+        add(IconSlot("emoji", "Emoji (Panel)", top))
+        add(IconSlot("one_handed", "Satu Tangan", top))
+        add(IconSlot("incognito", "Penyamaran", top))
+        add(IconSlot("settings", "Pengaturan", top))
+        add(IconSlot("hide", "Sembunyikan Keyboard", top))
+        add(IconSlot("layout_swap", "Tukar Tata Letak", top))
+        val keys = "Tombol"
+        add(IconSlot("globe", "Ganti Bahasa", keys))
+        add(IconSlot("emoji_key", "Tombol Emoji", keys))
         add(IconSlot("shift", "Shift", keys))
         add(IconSlot("caps", "Caps Lock", keys))
-        add(IconSlot("backspace", "Стереть", keys))
-        add(IconSlot("enter", "Ввод (новая строка)", keys))
-        add(IconSlot("go", "Ввод (перейти)", keys))
-        add(IconSlot("send", "Ввод (отправить)", keys))
-        add(IconSlot("search", "Ввод (поиск)", keys))
-        add(IconSlot("done", "Ввод (готово)", keys))
-        val emoji = "Вкладки эмодзи"
-        add(IconSlot("emoji_recent", "Недавние", emoji))
+        add(IconSlot("backspace", "Hapus", keys))
+        add(IconSlot("enter", "Enter (Baris Baru)", keys))
+        add(IconSlot("go", "Enter (Buka)", keys))
+        add(IconSlot("send", "Enter (Kirim)", keys))
+        add(IconSlot("search", "Enter (Cari)", keys))
+        add(IconSlot("done", "Enter (Selesai)", keys))
+        val emoji = "Tab Emoji"
+        add(IconSlot("emoji_recent", "Terbaru", emoji))
         EMOJI_CATEGORIES.forEachIndexed { i, t -> add(IconSlot("emoji_cat_$i", t, emoji)) }
     }
 

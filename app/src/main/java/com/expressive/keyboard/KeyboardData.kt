@@ -186,17 +186,6 @@ data class KeyRow(val keys: List<KeyModel>, val heightWeight: Float = 1f)
 
 object KeyVariantsCatalog {
     private val variantsMap: Map<String, List<String>> = mapOf(
-        "и" to listOf("ї", "й", "і"), "е" to listOf("5", "є", "ё", "э"), "ь" to listOf("ы", "ъ", "ѣ"),
-        "ш" to listOf("щ", "8", "ш"), "щ" to listOf("ш", "9", "щ"), "й" to listOf("ї", "1", "і"),
-        "ц" to listOf("@", "2", "ц"), "у" to listOf("ў", "3", "у"), "к" to listOf("$", "4", "к"),
-        "н" to listOf("%", "6", "н"), "г" to listOf("ґ", "7", "г"), "з" to listOf("№", "0", "з"),
-        "х" to listOf("[", "ъ", "]"), "ф" to listOf("~", "ф", "|"), "ы" to listOf("і", "ы", "ї"),
-        "в" to listOf("#", "в", "№"), "а" to listOf("@", "а", "&"), "п" to listOf("§", "п", "¶"),
-        "р" to listOf("₽", "р", "®"), "о" to listOf("°", "о", "º"), "л" to listOf("/", "л", "\\"),
-        "д" to listOf(":", "д", ";"), "ж" to listOf("\"", "ж", "'"), "э" to listOf("є", "э", "ё"),
-        "я" to listOf("«", "я", "»"), "ч" to listOf("<", "ч", ">"), "с" to listOf("©", "с", "$"),
-        "м" to listOf("µ", "м", "№"), "т" to listOf("™", "т", "+"), "б" to listOf("„", "б", "“"),
-        "ю" to listOf("…", "ю", "•"),
         "a" to listOf("à", "á", "â", "ä", "æ", "ã"), "e" to listOf("è", "é", "ê", "ë", "ē"),
         "i" to listOf("ì", "í", "î", "ï", "ī"), "o" to listOf("ò", "ó", "ô", "ö", "õ", "ø"),
         "u" to listOf("ù", "ú", "û", "ü", "ū"), "c" to listOf("ç", "ć", "č"), "n" to listOf("ñ", "ń", "ň"),
@@ -286,15 +275,9 @@ object KeyboardLayouts {
         KeyRow(listOf(shift(1.35f), gap(0.2f)) + c("z", "x", "c", "v", "b", "n", "m") + listOf(gap(0.2f), back(1.55f)))
     )
 
-    private val russianLetters = listOf(
-        KeyRow(c("й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х")),
-        KeyRow(c("ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э")),
-        KeyRow(listOf(shift(1.3f)) + c("я", "ч", "с", "м", "и", "т", "ь", "б", "ю") + back(1.5f))
-    )
-
     private val symbols1 = listOf(
         KeyRow(c("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")),
-        KeyRow(c("@", "#", "₽", "_", "&", "-", "+", "(", ")", "/")),
+        KeyRow(c("@", "#", "$", "_", "&", "-", "+", "(", ")", "/")),
         KeyRow(listOf(KeyModel("=\\<", KeyType.SYMBOLS_PAGE, 1.45f)) + c("*", "\"", "'", ":", ";", "!", "?") + back(1.5f))
     )
 
@@ -307,8 +290,7 @@ object KeyboardLayouts {
     private val languageRows = java.util.concurrent.ConcurrentHashMap<KeyboardLanguage, List<KeyRow>>()
 
     private fun lettersFor(lang: KeyboardLanguage): List<KeyRow> = when (lang.id) {
-        "ru" -> if (lang.fromPlugin == null) russianLetters else Languages.buildRows(lang)
-        "en" -> if (lang.fromPlugin == null) englishLetters else Languages.buildRows(lang)
+        "id", "en" -> if (lang.fromPlugin == null) englishLetters else Languages.buildRows(lang)
         else -> languageRows.getOrPut(lang) { Languages.buildRows(lang) }
     }
 
@@ -462,22 +444,22 @@ data class GifPage(val items: List<TenorGifResult>, val next: String?, val error
  */
 object GifCatalog {
     val categories: List<Pair<String, String>> = listOf(
-        "🔥 Топ" to "",
-        "👋 Привет" to "hello",
-        "😂 Смешно" to "lol funny",
-        "❤️ Люблю" to "love",
-        "👍 Да" to "yes",
-        "🙅 Нет" to "no",
-        "🙏 Спасибо" to "thank you",
-        "😢 Грустно" to "sad",
-        "😮 Вау" to "wow",
-        "🎉 Праздник" to "party celebrate",
-        "💃 Танец" to "dance",
-        "😎 Мемы" to "meme",
-        "🐱 Котики" to "cute cat",
-        "🐶 Собачки" to "cute dog",
-        "🤔 Хм" to "thinking",
-        "😴 Сплю" to "sleepy tired"
+        "🔥 Top" to "",
+        "👋 Halo" to "hello",
+        "😂 Lucu" to "lol funny",
+        "❤️ Cinta" to "love",
+        "👍 Ya" to "yes",
+        "🙅 Tidak" to "no",
+        "🙏 Terima Kasih" to "thank you",
+        "😢 Sedih" to "sad",
+        "😮 Wow" to "wow",
+        "🎉 Pesta" to "party celebrate",
+        "💃 Joget" to "dance",
+        "😎 Meme" to "meme",
+        "🐱 Kucing" to "cute cat",
+        "🐶 Anjing" to "cute dog",
+        "🤔 Berpikir" to "thinking",
+        "😴 Tidur" to "sleepy tired"
     )
 
     private fun g(id: String, title: String, cat: String): TenorGifResult {
@@ -486,25 +468,25 @@ object GifCatalog {
     }
 
     private val builtIn = listOf(
-        g("Ju7l5y9osyymQ", "Rickroll Dance", "💃 Танец"),
-        g("3o7abKhOpu0NwenH3O", "Awesome Thumbs Up", "👍 Да"),
-        g("l0MYt5jPR6QX5pnqM", "Party Celebration", "🎉 Праздник"),
-        g("26ufdipQqU2lhNA4g", "Mind Blown Galaxy", "😮 Вау"),
-        g("xT5LMHxhOfscxPfIfm", "Homer Simpson Yes", "👍 Да"),
-        g("5GoVLqeAOo6PK", "Excited Jonah Hill", "😮 Вау"),
-        g("QMHoU66sBXqqLqYvGO", "This Is Fine Dog", "😎 Мемы"),
-        g("YnkMcHgNIMW4Yfmjxr", "Stonks Up", "😎 Мемы"),
-        g("a93jwI0wkWTQs", "Homer Backing Into Bushes", "😎 Мемы"),
-        g("3o7527pa7qs9kCG78A", "Confused Dog", "🤔 Хм"),
-        g("d3mlE7uhX8KFgEmY", "Smart Thinking", "🤔 Хм"),
-        g("10UeedrT5MIfPG", "Laughing Hysterically", "😂 Смешно"),
-        g("pUeXcg80cO8I8", "Michael Jackson Popcorn", "😂 Смешно"),
-        g("7rj2ZgttvgomY", "Slow Clap Applause", "🎉 Праздник"),
-        g("JIX9t2j0ZTN9S", "Hacker Cat Typing", "🐱 Котики"),
-        g("MDJ9IbxxvDUQM", "Cat Sending Love Kiss", "🐱 Котики"),
-        g("VbnUQpnihPSIgIXuZv", "Computer Cat Glasses", "🐱 Котики"),
-        g("3M4NpbLCTxBqU", "Warm Ghost Hug", "❤️ Люблю"),
-        g("l4pTdcifPZLpDjL1e", "Sending Big Love Hearts", "❤️ Люблю")
+        g("Ju7l5y9osyymQ", "Rickroll Dance", "💃 Joget"),
+        g("3o7abKhOpu0NwenH3O", "Awesome Thumbs Up", "👍 Ya"),
+        g("l0MYt5jPR6QX5pnqM", "Party Celebration", "🎉 Pesta"),
+        g("26ufdipQqU2lhNA4g", "Mind Blown Galaxy", "😮 Wow"),
+        g("xT5LMHxhOfscxPfIfm", "Homer Simpson Yes", "👍 Ya"),
+        g("5GoVLqeAOo6PK", "Excited Jonah Hill", "😮 Wow"),
+        g("QMHoU66sBXqqLqYvGO", "This Is Fine Dog", "😎 Meme"),
+        g("YnkMcHgNIMW4Yfmjxr", "Stonks Up", "😎 Meme"),
+        g("a93jwI0wkWTQs", "Homer Backing Into Bushes", "😎 Meme"),
+        g("3o7527pa7qs9kCG78A", "Confused Dog", "🤔 Berpikir"),
+        g("d3mlE7uhX8KFgEmY", "Smart Thinking", "🤔 Berpikir"),
+        g("10UeedrT5MIfPG", "Laughing Hysterically", "😂 Lucu"),
+        g("pUeXcg80cO8I8", "Michael Jackson Popcorn", "😂 Lucu"),
+        g("7rj2ZgttvgomY", "Slow Clap Applause", "🎉 Pesta"),
+        g("JIX9t2j0ZTN9S", "Hacker Cat Typing", "🐱 Kucing"),
+        g("MDJ9IbxxvDUQM", "Cat Sending Love Kiss", "🐱 Kucing"),
+        g("VbnUQpnihPSIgIXuZv", "Computer Cat Glasses", "🐱 Kucing"),
+        g("3M4NpbLCTxBqU", "Warm Ghost Hug", "❤️ Cinta"),
+        g("l4pTdcifPZLpDjL1e", "Sending Big Love Hearts", "❤️ Cinta")
     )
 
     /** Встроенная подборка: по категории или по словам названия. */
@@ -674,14 +656,7 @@ object Translator {
 
     /** Не Google: MyMemory. Ему нужен исходный язык — угадываем по алфавиту. */
     private fun viaMyMemory(text: String, from: String, to: String): String {
-        val src = if (from != "auto") from else when {
-            text.any { it in 'Ѐ'..'ӿ' } -> if (text.any { it in "іїєґІЇЄҐ" }) "uk" else "ru"
-            text.any { it in '一'..'鿿' } -> "zh"
-            text.any { it in '぀'..'ヿ' } -> "ja"
-            text.any { it in '가'..'힯' } -> "ko"
-            text.any { it in '؀'..'ۿ' } -> "ar"
-            else -> "en"
-        }
+        val src = if (from != "auto") from else "id"
         if (src == to) return text
         val raw = open(
             "https://api.mymemory.translated.net/get?langpair=$src%7C$to&q=" + URLEncoder.encode(text.take(480), "UTF-8")

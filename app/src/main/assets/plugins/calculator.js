@@ -1,10 +1,10 @@
 /* @plugin
 {
   "id": "builtin.calculator",
-  "name": "Калькулятор",
-  "version": "1.0",
+  "name": "Kalkulator Keyboard",
+  "version": "1.1",
   "author": "Expressive Keyboard",
-  "description": "Мод: калькулятор прямо в клавиатуре. Результат вставляется в поле одной кнопкой.",
+  "description": "Kalkulator mini praktis langsung di dalam keyboard. Hitung cepat dan sisipkan hasilnya ke kolom input dengan satu tombol.",
   "icon": "@calc"
 }
 */
@@ -36,7 +36,7 @@ function press(k) {
 
 kb.addPanel({
   id: "calc",
-  title: "Калькулятор",
+  title: "Kalkulator",
   icon: "@calc",
   render: function () {
     return [
@@ -47,11 +47,11 @@ kb.addPanel({
         onClick: function (k) { press(k); } },
       { type: "row", children: [
         { type: "button", text: "=", accent: true, onClick: function () { press("="); } },
-        { type: "button", text: "Вставить", icon: "@send", onClick: function () {
+        { type: "button", text: "Sisipkan", icon: "@send", onClick: function () {
           var r = calc(expr);
           if (r !== null) kb.commit(r);
         } },
-        { type: "button", text: "Вставить с примером", onClick: function () {
+        { type: "button", text: "Sisipkan dengan Soal", onClick: function () {
           var r = calc(expr);
           if (r !== null) kb.commit(expr + " = " + r);
         } }

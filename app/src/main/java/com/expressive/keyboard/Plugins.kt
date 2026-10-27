@@ -860,26 +860,26 @@ object PluginRepository {
 
     const val EXAMPLE = """{
   "id": "my.first.plugin",
-  "name": "Мой плагин",
+  "name": "Plugin Kustom Saya",
   "version": "1.0",
-  "author": "Я",
-  "description": "Пример: действия, сокращения, символы, тема, оформление, настройки, варианты и раскладка",
+  "author": "Saya",
+  "description": "Contoh: aksi, singkatan, simbol, tema visual, tata letak, dan pengaturan keyboard",
   "icon": "🚀",
   "actions": [
-    { "title": "Подпись", "icon": "✍️", "type": "insert", "text": "С уважением,{newline}Иван", "pinned": true },
-    { "title": "Посчитать", "icon": "🧮", "type": "transform", "transform": "calc" },
-    { "title": "Сегодня", "icon": "📅", "type": "insert", "text": "{date:d MMMM yyyy}" },
-    { "title": "В кавычки", "icon": "«»", "type": "transform", "transform": "wrap", "prefix": "«", "suffix": "»" },
-    { "title": "КАПС", "icon": "🔠", "type": "transform", "transform": "upper" },
-    { "title": "Выделить всё", "icon": "▣", "type": "key", "key": "select_all" }
+    { "title": "Tanda Tangan", "icon": "✍️", "type": "insert", "text": "Salam hangat,{newline}Saya", "pinned": true },
+    { "title": "Hitung Rumus", "icon": "🧮", "type": "transform", "transform": "calc" },
+    { "title": "Hari Ini", "icon": "📅", "type": "insert", "text": "{date:d MMMM yyyy}" },
+    { "title": "Tanda Petik", "icon": "«»", "type": "transform", "transform": "wrap", "prefix": "«", "suffix": "»" },
+    { "title": "HURUF BESAR", "icon": "🔠", "type": "transform", "transform": "upper" },
+    { "title": "Pilih Semua", "icon": "▣", "type": "key", "key": "select_all" }
   ],
   "shortcuts": {
-    "спс": "спасибо",
-    "омг": "о боже мой",
+    "mksh": "terima kasih",
+    "omg": "oh my god",
     ":date": "{date}"
   },
   "symbols": [
-    { "title": "Стрелки", "icon": "→", "items": ["←", "↑", "→", "↓", "↔", "⇄", "⇒", "↩"] }
+    { "title": "Panah", "icon": "→", "items": ["←", "↑", "→", "↓", "↔", "⇄", "⇒", "↩"] }
   ],
   "theme": {
     "seed": "#FF7A3D",
@@ -888,7 +888,6 @@ object PluginRepository {
     "colors": { "accent": "#FF7A3D", "accentText": "#2B1100" }
   },
   "settings": { "key_height_dp": 56, "show_number_row": true },
-  "variants": { "е": ["ё", "е", "є"] },
   "skin": {
     "keyboard": {
       "background": { "colors": ["#2B1100", "#5A1E00"], "angle": 120 },
@@ -897,8 +896,7 @@ object PluginRepository {
     "keys": {
       "*": { "material": "glass", "text": "#FFFFFF", "press": "jelly" },
       "enter": { "background": { "colors": ["#FF7A3D", "#FF3D7A"], "angle": 135 } },
-      "space": { "shape": "pill", "label": "пробел" },
-      "key:я": { "material": "solid", "background": "#FF7A3D", "text": "#2B1100", "glow": "#FF7A3D" }
+      "space": { "shape": "pill", "label": "spasi" }
     },
     "chips": { "material": "glass", "text": "#FFFFFF" }
   }

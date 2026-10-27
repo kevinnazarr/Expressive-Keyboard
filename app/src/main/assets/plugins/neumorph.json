@@ -1,9 +1,9 @@
 {
   "id": "builtin.neumorph",
-  "name": "Неоморфизм",
+  "name": "Neumorfisme (Soft UI)",
   "version": "3.0",
   "author": "Expressive Keyboard",
-  "description": "Мягкие выпуклые клавиши из того же материала, что и фон: свет сверху слева, тень снизу справа, при нажатии клавиша вдавливается. Светлый и тёмный вариант.",
+  "description": "Tombol timbul lembut 3D yang menyatu dengan latar belakang: bayangan halus dengan efek tekan masuk. Mendukung mode terang dan gelap.",
   "icon": "☁️",
   "skin": {
     "keyboard": { "corner": 28 },

@@ -19,8 +19,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        // в APK остаются только нужные языки ресурсов библиотек
-        resourceConfigurations += listOf("ru", "en")
+        // dalam APK hanya menyertakan konfigurasi bahasa Indonesia dan Inggris
+        resourceConfigurations += listOf("id", "in", "en")
 
         // ключи GIF-сервисов — из local.properties (он не попадает в git): KLIPY_API_KEY=… и/или GIPHY_API_KEY=…
         val local = Properties().apply {

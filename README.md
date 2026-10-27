@@ -1,72 +1,97 @@
 # Expressive Keyboard
 
-An Android keyboard in the Material 3 Expressive style, built with Kotlin and Jetpack Compose.
-Highly customizable and extensible with plugins and JavaScript mods.
+Aplikasi Android Keyboard bergaya **Material 3 Expressive**, dibangun dengan **Kotlin 2.0.0** dan **Jetpack Compose**.
+Kini dikembangkan khusus dengan fokus penuh pada **Bahasa Indonesia** dan **English (Inggris)**.
 
-<!-- Add 2–3 screenshots here, for example:
-<p>
-  <img src="screenshots/keyboard.png" width="250">
-  <img src="screenshots/settings.png" width="250">
-</p>
--->
+---
 
-## Download
+## 🇮🇩 Ringkasan Fitur (Bahasa Indonesia)
 
-Get the latest APK from [Releases](https://github.com/kotlalipopus/Expressive-Keyboard/releases/latest).
+- **Bahasa & Tata Letak Terfokus:**
+  - Hanya mendukung **Bahasa Indonesia (ID)** dan **English (EN)** dengan tata letak QWERTY yang bersih.
+  - Kamus prediksi frekuensi kata bawaan untuk Bahasa Indonesia (`id.txt`) dan Bahasa Inggris (`en.txt`).
+  - Koreksi otomatis cerdas, deteksi typo umum Bahasa Indonesia & Inggris, serta kapitalisasi otomatis.
+- **Bahasa Antarmuka Aplikasi (I18n):**
+  - Pilihan bahasa UI: **Bahasa Indonesia** dan **English** (dapat mengikuti bahasa sistem atau diatur manual).
+- **Desain & Tema Expressive:**
+  - *Material You Expressive* (warna dinamis mengikuti wallpaper Android / Monet).
+  - Pilihan gaya visual: *Material 3*, *Liquid Glass* (efek kaca transparan & blur), *Classic*, *Neon*, dan *Neumorphism*.
+  - Dukungan font variabel Nunito bawaan atau font kustom (.ttf / .otf).
+  - Foto latar belakang kustom dari galeri di belakang tombol keyboard.
+- **Ketik Geser (Glide Typing):**
+  - Ketik cepat tanpa mengangkat jari dengan jejak animasi partikel.
+- **Emoji & Media:**
+  - Emoji Unicode 16 lengkap dengan pencarian dalam Bahasa Indonesia & Inggris.
+  - Panel stiker/GIF (mendukung KLIPY API dan Giphy API, serta fallback koleksi lokal).
+- **Kecerdasan Buatan (AI Text Proofreading):**
+  - Koreksi teks lokal tanpa internet menggunakan Gemini Nano (AICore), atau via Anthropic Claude / LanguageTool.
+- **Plugin & Modifikasi (JavaScript):**
+  - Mendukung plugin berbasis JavaScript (Rhino) untuk menambah tombol kustom, reaksi kata, panel tambahan, dan efek visual di atas keyboard.
 
-Requires Android 8.0 or newer.
+---
 
-## Features
+## 🇬🇧 Features Summary (English)
 
-- **Typing:** word suggestions, autocorrect, glide (swipe) typing
-- **Languages:** 90+ layouts; Chinese (Pinyin, simplified and traditional) and Japanese (Romaji → Kana) input; Indic scripts (InScript)
-- **Emoji:** all Unicode 16 emoji, search in English and Russian, skin tones, built-in styles (Twemoji, Noto, Blob, OpenMoji)
-- **Designs:** Material You Expressive, Material 3 (Google guidelines), Liquid Glass, Classic, Neon, Neumorphism — one tap
-- **App language:** Russian or English
-- **Panels:** emoji, GIFs, clipboard, translator, voice input
-- **Look:** Material You colors, themes and skins, custom fonts (.ttf/.otf), a photo from your gallery behind the keys
-- **Layout:** key height and corner radius, spacing, keyboard width, one-handed mode
-- **Feedback:** adjustable vibration and sound
-- **Privacy:** incognito mode; suggestions and dictionary learning are turned off in password fields
-- **Plugins and mods:** custom buttons, shortcuts, layouts, themes and JavaScript scripts that can draw and animate over the keyboard, press keys and change layouts on the fly
+- **Focused Languages & Layouts:**
+  - Exclusively supports **Bahasa Indonesia (ID)** and **English (EN)** QWERTY layouts.
+  - Built-in frequency prediction dictionaries for both Indonesian (`id.txt`) and English (`en.txt`).
+  - Smart autocorrect, common typo fixes, and auto-capitalization.
+- **App Interface Language (I18n):**
+  - Clean bilingual UI options: **Bahasa Indonesia** and **English** (follows system locale or manual selection).
+- **Expressive Design & Theming:**
+  - Material You Expressive dynamic theming (wallpaper-based Monet palette).
+  - Diverse visual styles: Material 3, Liquid Glass, Classic, Neon, and Neumorphism.
+  - Built-in rounded variable font (Nunito) or custom fonts (.ttf/.otf).
+  - Custom background photo from device gallery.
+- **Glide Typing:**
+  - Continuous gesture typing with smooth finger trail animation.
+- **Media & Emoji:**
+  - Full Unicode 16 emoji palette with bilingual search.
+  - GIF & sticker panel with KLIPY / Giphy API integration and built-in offline collection.
+- **AI Text Proofreading:**
+  - Offline on-device text correction via Google Gemini Nano (AICore), plus Claude API and LanguageTool.
+- **Extensible JavaScript Plugins & Mods:**
+  - Sandboxed JS engine (Rhino) allowing custom actions, extra panels, toolbar buttons, and canvas overlay animations.
 
-## Installation
+---
 
-1. Download and install the APK from [Releases](https://github.com/kotlalipopus/Expressive-Keyboard/releases/latest).
-2. Open the app and enable the keyboard in system settings.
-3. Select Expressive Keyboard as your input method.
+## Kompilasi dari Source Code (Building from Source)
 
-## Permissions
+### Prasyarat Environment:
+- **JDK 17** (Temurin 17 / OpenJDK 17)
+- **Android SDK Platform 35** (`platforms;android-35`)
+- **Android SDK Build-Tools 35.0.0** & **34.0.0**
+- File `local.properties` berisi `sdk.dir=<path_android_sdk>`
 
-| Permission | Why |
-|---|---|
-| Internet | GIFs (Giphy), translator, downloading suggestion dictionaries, mods with the `network` permission |
-| Microphone | Voice input |
-| Vibration | Haptic feedback on key press |
-
-Your typed text is not sent anywhere unless you use the translator yourself or install a mod
-that has both network and text-reading permissions.
-
-## Plugins and mods
-
-Plugins are imported in **Settings → Plugins and mods**. The format and JavaScript API are described
-in [PLUGINS.md](PLUGINS.md) (in Russian); examples live in [`app/src/main/assets/plugins`](app/src/main/assets/plugins).
-
-## Building from source
-
-You need Android Studio (or JDK 17 and Android SDK 35).
+### Langkah Build:
 
 ```bash
-git clone https://github.com/kotlalipopus/Expressive-Keyboard.git
+git clone https://github.com/kevinnazarr/Expressive-Keyboard.git
 cd Expressive-Keyboard
+
+# Pastikan script gradlew executable
+chmod +x gradlew
+
+# Build debug APK
 ./gradlew assembleDebug
 ```
 
-The APK will be in `app/build/outputs/apk/debug/`.
+Hasil file APK debug akan berada di:
+```
+app/build/outputs/apk/debug/app-debug.apk
+```
 
-To enable GIF search, put your own Giphy key into `GIPHY_API_KEY` in
-`app/src/main/java/com/expressive/keyboard/Common.kt`. Without a key, a built-in GIF set is used.
+---
 
-## License
+## Layanan GIF & API Key (Opsional)
+Untuk mengaktifkan pencarian GIF online via KLIPY atau Giphy, Anda dapat menyematkan key di `local.properties`:
+```properties
+KLIPY_API_KEY=your_klipy_key_here
+GIPHY_API_KEY=your_giphy_key_here
+```
+Atau masukkan langsung melalui menu **Pengaturan → Papan Klip & GIF** di dalam aplikasi. Jika dikosongkan, aplikasi akan menggunakan koleksi GIF bawaan.
 
-[MIT](LICENSE)# Expressive-Keyboard
+---
+
+## Lisensi
+[MIT License](LICENSE)

@@ -5,9 +5,9 @@
     android:supportsInlineSuggestions="true">
 
     <subtype
-        android:imeSubtypeLocale="ru_RU"
+        android:imeSubtypeLocale="in_ID"
         android:imeSubtypeMode="keyboard"
-        android:label="@string/subtype_ru" />
+        android:label="@string/subtype_id" />
 
     <subtype
         android:imeSubtypeLocale="en_US"

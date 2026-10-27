@@ -1,20 +1,20 @@
 {
   "id": "builtin.navigation",
-  "name": "Правка",
+  "name": "Navigasi & Edit Teks",
   "version": "1.0",
   "author": "Expressive Keyboard",
-  "description": "Выделение, копирование, вставка, отмена и перемещение курсора",
+  "description": "Alat seleksi, salin, potong, tempel, urungkan, dan navigasi kursor teks",
   "icon": "✂️",
   "actions": [
-    { "title": "Выделить всё", "icon": "▣", "type": "key", "key": "select_all" },
-    { "title": "Копировать", "icon": "📋", "type": "key", "key": "copy" },
-    { "title": "Вырезать", "icon": "✂️", "type": "key", "key": "cut" },
-    { "title": "Вставить", "icon": "📥", "type": "key", "key": "paste" },
-    { "title": "Отменить", "icon": "↶", "type": "key", "key": "undo" },
-    { "title": "Повторить", "icon": "↷", "type": "key", "key": "redo" },
-    { "title": "В начало", "icon": "⇤", "type": "key", "key": "home" },
-    { "title": "В конец", "icon": "⇥", "type": "key", "key": "end" },
-    { "title": "Удалить слово", "icon": "⌫", "type": "key", "key": "delete_word" },
+    { "title": "Pilih Semua", "icon": "▣", "type": "key", "key": "select_all" },
+    { "title": "Salin", "icon": "📋", "type": "key", "key": "copy" },
+    { "title": "Potong", "icon": "✂️", "type": "key", "key": "cut" },
+    { "title": "Tempel", "icon": "📥", "type": "key", "key": "paste" },
+    { "title": "Urungkan", "icon": "↶", "type": "key", "key": "undo" },
+    { "title": "Ulangi", "icon": "↷", "type": "key", "key": "redo" },
+    { "title": "Ke Awal", "icon": "⇤", "type": "key", "key": "home" },
+    { "title": "Ke Akhir", "icon": "⇥", "type": "key", "key": "end" },
+    { "title": "Hapus Kata", "icon": "⌫", "type": "key", "key": "delete_word" },
     { "title": "Tab", "icon": "↹", "type": "key", "key": "tab" }
   ]
 }

@@ -34,8 +34,8 @@ import java.util.concurrent.TimeUnit
 // ============================================================================
 
 enum class AiProvider(val id: String, val title: String) {
-    AUTO("AUTO", "Авто"),
-    NANO("NANO", "На телефоне"),
+    AUTO("AUTO", "Otomatis"),
+    NANO("NANO", "Di Perangkat"),
     GEMINI("GEMINI", "Gemini"),
     CLAUDE("CLAUDE", "Claude"),
     OPENAI("OPENAI", "OpenAI"),
@@ -334,11 +334,7 @@ object AiFix {
         val l = when (lang) {
             "", "auto" -> "auto"
             "en" -> "en-US"
-            "de" -> "de-DE"
-            "pt" -> "pt-BR"
-            "ru" -> "ru-RU"
-            "uk" -> "uk-UA"
-            "pl" -> "pl-PL"
+            "id" -> "id-ID"
             else -> lang
         }
         return try {

@@ -187,8 +187,7 @@ internal fun TranslatorBar(state: KeyboardState, actions: KeyboardActions, setti
     val input = state.translatorInput
     val target = settings.translateTarget
     val targets = remember(settings.languages) {
-        (Languages.enabled(settings).map { it.id } + listOf("en", "ru", "de", "fr", "es", "it", "zh", "ja", "ko", "tr", "uk", "ar"))
-            .map { it.substringBefore('-') }.distinct()
+        listOf("id", "en")
     }
     var pick by remember { mutableStateOf(false) }
     var failed by remember { mutableStateOf(false) }

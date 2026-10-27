@@ -164,13 +164,10 @@ internal fun LanguagesPage(settings: KeyboardSettings) {
     InfoCard(
         Icons.Rounded.Language,
         tr(
-            "Язык меняется кнопкой 🌐 (удержание — список языков) или свайпом по пробелу. Всего языков: {0}. " +
-                "Подсказки работают по частотному словарю: русский, английский и китайский встроены, остальные скачиваются " +
-                "(~0,3–0,8 МБ). Китайский набирается пиньинем (nihao → 你好), японский — ромадзи (konnichiha → こんにちは), " +
-                "корейский собирает слоги сам, вьетнамский — по Telex.", Languages.all.size
+            "Ganti bahasa dengan tombol 🌐 (tekan lama untuk daftar bahasa) atau usap tombol spasi. Kamus prediksi kata bahasa Indonesia & Inggris tersedia secara lokal."
         )
     )
-    SettingsSection("Включённые языки") {
+    SettingsSection(tr("Включённые языки")) {
         enabled.forEachIndexed { i, lang ->
             key(dictVersion, lang.id) {
                 LanguageRow(
@@ -178,13 +175,13 @@ internal fun LanguagesPage(settings: KeyboardSettings) {
                     dictState(context, lang, status),
                     trailing = {
                         IconButton(onClick = { if (i > 0) save(enabled.toMutableList().also { java.util.Collections.swap(it, i, i - 1) }) }, enabled = i > 0) {
-                            Icon(Icons.Rounded.KeyboardArrowUp, "Выше")
+                            Icon(Icons.Rounded.KeyboardArrowUp, tr("Atas"))
                         }
                         IconButton(onClick = { if (i < enabled.lastIndex) save(enabled.toMutableList().also { java.util.Collections.swap(it, i, i + 1) }) }, enabled = i < enabled.lastIndex) {
-                            Icon(Icons.Rounded.KeyboardArrowDown, "Ниже")
+                            Icon(Icons.Rounded.KeyboardArrowDown, tr("Bawah"))
                         }
                         IconButton(onClick = { save(enabled - lang) }, enabled = enabled.size > 1) {
-                            Icon(Icons.Rounded.RemoveCircleOutline, "Убрать", tint = if (enabled.size > 1) cs.error else cs.outline)
+                            Icon(Icons.Rounded.RemoveCircleOutline, tr("Hapus"), tint = if (enabled.size > 1) cs.error else cs.outline)
                         }
                     },
                     onDict = { download(lang) }
@@ -192,14 +189,14 @@ internal fun LanguagesPage(settings: KeyboardSettings) {
             }
         }
     }
-    SettingsSection("Добавить язык") {
+    SettingsSection(tr("Добавить язык")) {
         GroupItem {
             OutlinedTextField(
                 value = query,
                 onValueChange = { query = it },
                 modifier = Modifier.fillMaxWidth().padding(12.dp),
                 shape = RoundedCornerShape(24.dp),
-                placeholder = { Text(tr("Поиск: немецкий, Deutsch, de…")) },
+                placeholder = { Text(tr("Cari: Indonesia, English, id, en…")) },
                 leadingIcon = { Icon(Icons.Rounded.Search, null) },
                 singleLine = true
             )
@@ -213,21 +210,19 @@ internal fun LanguagesPage(settings: KeyboardSettings) {
                         FilledTonalIconButton(onClick = {
                             save(enabled + lang)
                             if (settings.dictAutoDownload && lang.dict != null && !Dictionaries.isInstalled(context, lang.dict)) download(lang)
-                        }) { Icon(Icons.Rounded.Add, "Добавить") }
+                        }) { Icon(Icons.Rounded.Add, tr("Tambah")) }
                     }, onDict = null)
                 }
             }
     }
-    SettingsSection("Словари") {
-        ToggleItem(Icons.Rounded.CloudDownload, "Скачивать словарь автоматически", "При добавлении языка и при первом наборе на нём", settings.dictAutoDownload) {
+    SettingsSection(tr("Словари")) {
+        ToggleItem(Icons.Rounded.CloudDownload, tr("Скачивать словарь автоматически"), tr("При добавлении языка и при первом наборе на нём"), settings.dictAutoDownload) {
             KeyboardPrefs.edit(context) { putBoolean("dict_auto_download", it) }
         }
     }
 }
 
 private fun dictState(context: Context, lang: KeyboardLanguage, status: Map<String, String>, enabled: Boolean = true): String {
-    if (lang.composer == Composer.PINYIN) return tr("Встроенный словарь пиньиня — 40 000 слов")
-    if (lang.composer == Composer.KANA) return tr("Хирагана и катакана из латиницы")
     val code = lang.dict ?: return tr("Без словаря — подсказки из ваших слов")
     status[code]?.let { return if (it == "загрузка…") tr("Словарь загружается…") else tr("Ошибка: {0}", it) }
     return when {
@@ -349,8 +344,7 @@ internal fun IconsPage(settings: KeyboardSettings) {
     }
     InfoCard(
         Icons.Rounded.Brush,
-        "Нажмите на иконку, чтобы заменить её своей картинкой (PNG с прозрачностью смотрится лучше всего) " +
-            "или эмодзи/текстом. Картинку можно перекрашивать в цвет темы. Плагины тоже могут менять иконки."
+        tr("Ketuk ikon untuk menggantinya dengan gambar kustom (PNG transparan) atau emoji/teks. Warna ikon tombol dapat disesuaikan dengan tema. Plugin juga dapat menyediakan ikon kustom.")
     )
     IconStore.slots.groupBy { it.group }.forEach { (group, slots) ->
         SettingsSection(group) {
@@ -451,10 +445,9 @@ internal fun ToolbarPage(settings: KeyboardSettings) {
 
     InfoCard(
         Icons.Rounded.DragIndicator,
-        "Порядок кнопок на панели инструментов (кнопка с сеткой слева вверху). На самой клавиатуре порядок тоже " +
-            "меняется: удерживайте кнопку и перетащите её влево или вправо."
+        tr("Urutan tombol pada bilah alat keyboard (tombol kisi di kiri atas). Urutan tombol juga dapat digeser langsung pada keyboard: tahan tombol lalu geser ke kiri atau kanan.")
     )
-    SettingsSection("Кнопки") {
+    SettingsSection(tr("Кнопки")) {
         order.forEachIndexed { i, id ->
             val def = byId[id] ?: return@forEachIndexed
             val visible = id !in hidden
@@ -476,10 +469,10 @@ internal fun ToolbarPage(settings: KeyboardSettings) {
                         color = if (visible) cs.onSurface else cs.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis
                     )
                     IconButton(onClick = { saveOrder(order.toMutableList().also { java.util.Collections.swap(it, i, i - 1) }) }, enabled = i > 0) {
-                        Icon(Icons.Rounded.KeyboardArrowUp, "Раньше")
+                        Icon(Icons.Rounded.KeyboardArrowUp, tr("Atas"))
                     }
                     IconButton(onClick = { saveOrder(order.toMutableList().also { java.util.Collections.swap(it, i, i + 1) }) }, enabled = i < order.lastIndex) {
-                        Icon(Icons.Rounded.KeyboardArrowDown, "Позже")
+                        Icon(Icons.Rounded.KeyboardArrowDown, tr("Bawah"))
                     }
                     Switch(
                         checked = visible,
@@ -490,7 +483,7 @@ internal fun ToolbarPage(settings: KeyboardSettings) {
         }
     }
     SettingsSection(null) {
-        ActionItem(Icons.Rounded.RestartAlt, "Порядок по умолчанию", "Все кнопки снова видны", onClick = {
+        ActionItem(Icons.Rounded.RestartAlt, tr("Порядок по умолчанию"), tr("Все кнопки снова видны"), onClick = {
             KeyboardPrefs.edit(context) { remove("toolbar_order"); remove("toolbar_hidden") }
         })
     }

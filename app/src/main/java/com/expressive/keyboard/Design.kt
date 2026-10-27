@@ -55,23 +55,23 @@ enum class DesignStyle(
     val weight: Int
 ) {
     EXPRESSIVE(
-        "EXPRESSIVE", "Material You Expressive", "Волнистые «печеньки» и морфинг формы",
+        "EXPRESSIVE", "Material You Expressive", "Bentuk aksen bergelombang dan animasi dinamis",
         "", ExpressiveShapePreset.COOKIE_12, "ROUNDED", 16f, 700
     ),
     MATERIAL(
-        "MATERIAL", "Material 3 · Google", "Как Gboard: цвета Material You, строгие клавиши, подсказки текстом",
+        "MATERIAL", "Material 3 · Google", "Gaya Gboard: warna Material You dan tombol rapi minimalis",
         "builtin.material", ExpressiveShapePreset.CIRCLE, "SYSTEM", 8f, 500
     ),
     GLASS(
-        "GLASS", "Liquid Glass", "Прозрачное стекло с преломлением и бликами, светлое и тёмное",
+        "GLASS", "Liquid Glass", "Efek kaca tembus pandang elegan, mendukung mode terang & gelap",
         "builtin.liquid-glass", ExpressiveShapePreset.CIRCLE, "SYSTEM", 14f, 500
     ),
     CLASSIC(
-        "CLASSIC", "Классика", "Белые клавиши на сером, синий Enter — привычно и спокойно",
+        "CLASSIC", "Klasik", "Tombol bersih abu-abu dengan Enter biru yang nyaman dan tenang",
         "builtin.classic", ExpressiveShapePreset.CIRCLE, "SYSTEM", 6f, 400
     ),
-    NEON("NEON", "Неон", "Почти чёрный фон, тонкие светящиеся контуры", "builtin.neon", ExpressiveShapePreset.CIRCLE, "SYSTEM", 10f, 500),
-    NEUMORPH("NEUMORPH", "Неоморфизм", "Мягкие выпуклые клавиши из материала фона", "builtin.neumorph", ExpressiveShapePreset.CIRCLE, "ROUNDED", 14f, 600);
+    NEON("NEON", "Neon Glow", "Latar belakang gelap dengan garis tepi toska bercahaya", "builtin.neon", ExpressiveShapePreset.CIRCLE, "SYSTEM", 10f, 500),
+    NEUMORPH("NEUMORPH", "Neumorfisme (Soft UI)", "Tombol timbul lembut 3D yang menyatu dengan latar belakang", "builtin.neumorph", ExpressiveShapePreset.CIRCLE, "ROUNDED", 14f, 600);
 
     fun apply(context: Context) {
         if (skin.isNotEmpty() && !PluginRepository.isEnabled(skin)) PluginRepository.setEnabled(context, skin, true)

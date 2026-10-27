@@ -1,0 +1,64 @@
+{
+  "id": "builtin.quick-replies",
+  "name": "Template & Balas Cepat",
+  "version": "1.0",
+  "author": "Expressive Keyboard",
+  "description": "Koleksi template balasan cepat untuk salam formal, konfirmasi transaksi, template rekening, format alamat pengiriman, dan pesan harian.",
+  "icon": "💬",
+  "actions": [
+    {
+      "title": "Salam Formal",
+      "icon": "✉️",
+      "type": "insert",
+      "text": "Yth. Bapak/Ibu,\n\nSemoga pesan ini menemui Anda dalam keadaan baik.\n"
+    },
+    {
+      "title": "Penutup Formal",
+      "icon": "📝",
+      "type": "insert",
+      "text": "\nDemikian yang dapat kami sampaikan. Atas perhatian dan kerja samanya, kami ucapkan terima kasih."
+    },
+    {
+      "title": "Terima Kasih",
+      "icon": "🙏",
+      "type": "insert",
+      "text": "Terima kasih banyak atas bantuan dan informasinya! 🙏"
+    },
+    {
+      "title": "Konfirmasi Transfer",
+      "icon": "💳",
+      "type": "insert",
+      "text": "Halo kak, pembayaran sudah berhasil ditransfer. Mohon dicek ya, terima kasih! 🙏"
+    },
+    {
+      "title": "Konfirmasi Pesanan",
+      "icon": "📦",
+      "type": "insert",
+      "text": "Pesanan Anda sudah kami terima dan sedang diproses. Mohon ditunggu pembaruannya ya kak. Terima kasih! 😊"
+    },
+    {
+      "title": "Format Alamat",
+      "icon": "📍",
+      "type": "insert",
+      "text": "Nama Penerima:\nNo. Handphone:\nAlamat Lengkap:\nKelurahan/Kecamatan:\nKota/Kabupaten:\nKode Pos:"
+    },
+    {
+      "title": "Info Rekening",
+      "icon": "🏦",
+      "type": "insert",
+      "text": "Bank:\nNomor Rekening:\nAtas Nama:"
+    },
+    {
+      "title": "Segera Dikabari",
+      "icon": "⏳",
+      "type": "insert",
+      "text": "Baik, sudah kami catat. Segera kami hubungi kembali ya. Terima kasih!"
+    },
+    {
+      "title": "Sedang di Jalan",
+      "icon": "🛵",
+      "type": "insert",
+      "text": "Mohon maaf saat ini saya sedang di jalan. Segera saya balas setelah sampai ya. 🙏"
+    }
+  ]
+}
